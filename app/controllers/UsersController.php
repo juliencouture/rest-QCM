@@ -28,7 +28,6 @@ class UsersController extends Controller {
 		$user->setPassword($this->request->getPost("password"));
 		if($user->save()){
 			$token=bin2hex(openssl_random_pseudo_bytes(16));
-			$_SESSION['token']= $token;
 			$this->persistent->token = $token;
 			echo '{token: "'.$token.'",inserted: true}';
 		}else{
@@ -54,6 +53,7 @@ class UsersController extends Controller {
 		}else{
 			echo '{connected: false}';
 		}
+		
 	}
 
 	public function checkConnectedAction(){

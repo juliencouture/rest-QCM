@@ -13,13 +13,12 @@ abstract class CBase extends MainRestController{
 	
 	//getAll
 	public function get(){
-		echo $_SESSION['token'];
-		if($_SESSION['token']==$_GET['token']){
+		if($this->session->get("token")==$_GET['token']){
 			$modelclass = $this->modelclass;
 			$models= $modelclass::find();
 			$models=$models->toArray();
 			if(sizeof($models)==0)
-				throw new NotFound("Aucun {$this->_getModelName()} trouvï¿½");
+				throw new NotFound("Aucun {$this->_getModelName()} trouvé");
 			return $models;
 		}
 		else return 'okok';
