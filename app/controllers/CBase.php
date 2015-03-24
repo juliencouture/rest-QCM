@@ -12,8 +12,9 @@ abstract class CBase extends MainRestController{
 	}
 	
 	//getAll
-	public function get($token){
-		if($_SESSION['token']==$token){
+	public function get(){
+		echo $_SESSION['token'];
+		if($_SESSION['token']==$_GET['token']){
 			$modelclass = $this->modelclass;
 			$models= $modelclass::find();
 			$models=$models->toArray();
@@ -21,7 +22,7 @@ abstract class CBase extends MainRestController{
 				throw new NotFound("Aucun {$this->_getModelName()} trouv�");
 			return $models;
 		}
-		else return false;
+		else return 'okok';
 	}
 	
 	//getOne
